@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run_asm",
+            "type": "shell",
+            "command": "cd .. ; ./run_asm \\\"${file}\\\" 0",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "debug_asm",
+            "type": "shell",
+            "command": "cd .. ; ./debug_asm \\\"${file}\\\" 0",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "new_asm",
+            "type": "shell",
+            "command": "cd .. ; ./new_asm",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "make_asm",
+            "type": "shell",
+            "command": "cd .. ; ./make_asm \\\"${file}\\\" 0",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "list_asm",
+            "type": "shell",
+            "command": "cd .. ; ./list_asm \\\"${file}\\\" 0",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

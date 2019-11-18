@@ -1,0 +1,142 @@
+Microsoft (R) Macro Assembler Version 6.15.8803		    10/08/19 08:45:42
+T4-29-1.asm						     Page 1 - 1
+
+
+ 0000				data segment
+ 0000  0004 [			    string db 4 dup(?), 10, 13, '$'
+        00
+       ] 0A 0D 24
+ 0007				data ends
+
+ 0000				stack segment
+ 0000  0100 [			    dw 256 dup(0)
+        0000
+       ]
+ 0200				stack ends
+
+ 0000				code segment
+				    assume cs:code, ss:stack, ds:data
+ 0000				main:
+ 0000  B8 ---- R		    mov ax, data
+ 0003  8E D8			    mov ds, ax
+ 0005  BE 0000			    mov si, 0
+ 0008				start:    
+ 0008  B8 1A3F			    mov ax, 1A3Fh
+ 000B  E8 000C			    call hex
+ 000E				over:
+ 000E  BA 0000 R		    mov dx, offset string
+ 0011  B4 09			    mov ah, 09h
+ 0013  CD 21			    int 21h
+ 0015  B8 4C00			    mov ax, 4c00h
+ 0018  CD 21			    int 21h
+
+ 001A				hex proc
+ 001A  8B DA			    mov bx, dx
+ 001C  50			    push ax
+ 001D  50			    push ax
+ 001E  50			    push ax
+ 001F  25 F000			    and ax, 1111000000000000b
+ 0022  B1 0C			    mov cl, 12
+ 0024  D3 E8			    shr ax, cl
+ 0026  83 F8 0A			    cmp ax, 10
+ 0029  73 05			    jnb letter1
+ 002B				digit1:
+ 002B  83 C0 30			    add ax, 48
+ 002E  EB 03			    jmp next1
+ 0030				letter1:
+ 0030  83 C0 37			    add ax, 55
+ 0033				next1:
+ 0033  89 07			    mov [bx], ax
+ 0035  43			    inc bx
+
+ 0036  58			    pop ax
+ 0037  25 0F00			    and ax, 0f00h
+ 003A  B1 08			    mov cl, 8
+ 003C  D3 E8			    shr ax, cl
+ 003E  83 F8 0A			    cmp ax, 10
+ 0041  73 05			    jnb letter2
+ 0043				digit2:
+ 0043  83 C0 30			    add ax, 48
+ 0046  EB 03			    jmp next2
+ 0048				letter2:
+ 0048  83 C0 37			    add ax, 55
+ 004B				next2:
+ 004B  89 07			    mov [bx], ax
+ 004D  43			    inc bx
+
+ 004E  58			    pop ax
+ 004F  25 00F0			    and ax, 00F0h
+ 0052  B1 04			    mov cl, 4
+ 0054  D3 E8			    shr ax, cl
+ 0056  83 F8 0A			    cmp ax, 10
+ 0059  73 05			    jnb letter3
+ 005B				digit3:
+ 005B  83 C0 30			    add ax, 48
+ 005E  EB 03			    jmp next3
+ 0060				letter3:
+ 0060  83 C0 37			    add ax, 55
+ 0063				next3:
+ 0063  89 07			    mov [bx], ax
+ 0065  43			    inc bx
+
+ 0066  58			    pop ax
+ 0067  83 E0 0F			    and ax, 000Fh
+ 006A  83 F8 0A			    cmp ax, 10
+ 006D  73 05			    jnb letter4
+ 006F				digit4:
+ 006F  83 C0 30			    add ax, 48
+ 0072  EB 03			    jmp next4
+ 0074				letter4:
+ 0074  83 C0 37			    add ax, 55
+ 0077				next4:
+ 0077  89 07			    mov [bx], ax
+
+ 0079				hex endp
+
+ 0079				code ends
+				end main
+Microsoft (R) Macro Assembler Version 6.15.8803		    10/08/19 08:45:42
+T4-29-1.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 0079	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 0007	  Para	  Private 
+stack  . . . . . . . . . . . . .	16 Bit	 0200	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+hex  . . . . . . . . . . . . . .	P Near	 001A	  code	Length= 005F Private
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+digit1 . . . . . . . . . . . . .	L Near	 002B	  code	
+digit2 . . . . . . . . . . . . .	L Near	 0043	  code	
+digit3 . . . . . . . . . . . . .	L Near	 005B	  code	
+digit4 . . . . . . . . . . . . .	L Near	 006F	  code	
+letter1  . . . . . . . . . . . .	L Near	 0030	  code	
+letter2  . . . . . . . . . . . .	L Near	 0048	  code	
+letter3  . . . . . . . . . . . .	L Near	 0060	  code	
+letter4  . . . . . . . . . . . .	L Near	 0074	  code	
+main . . . . . . . . . . . . . .	L Near	 0000	  code	
+next1  . . . . . . . . . . . . .	L Near	 0033	  code	
+next2  . . . . . . . . . . . . .	L Near	 004B	  code	
+next3  . . . . . . . . . . . . .	L Near	 0063	  code	
+next4  . . . . . . . . . . . . .	L Near	 0077	  code	
+over . . . . . . . . . . . . . .	L Near	 000E	  code	
+start  . . . . . . . . . . . . .	L Near	 0008	  code	
+string . . . . . . . . . . . . .	Byte	 0000	  data	
+
+	   0 Warnings
+	   0 Errors

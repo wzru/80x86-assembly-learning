@@ -1,0 +1,14 @@
+{
+    "folders": [
+        {
+            "path": "SRC"
+        },
+        {
+            "path": "PROBLEM"
+        },
+        {
+            "path": "INTERRUPT"
+        }
+    ],
+	"settings": {}
+}

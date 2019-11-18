@@ -1,0 +1,75 @@
+Microsoft (R) Macro Assembler Version 6.15.8803		    05/05/18 17:04:33
+EXAM3.asm						     Page 1 - 1
+
+
+ 0000				dseg    segment
+ 0000 00			ral     db      ?
+ 0001 30 31 32 33 34 35		htab	db	'0123456789ABCDEF'
+       36 37 38 39 41 42
+       43 44 45 46
+ 0011				dseg    ends
+ 0000				cseg    segment
+				        assume  cs:cseg,ds:dseg
+ 0000  B8 ---- R		start:  mov     ax,dseg
+ 0003  8E D8			        mov     ds,ax
+ 0005  B4 01			        mov     ah,01h		;输入第一个数
+ 0007  CD 21			        int     21h
+ 0009  2C 30			        sub     al,30h
+ 000B  8A D8			        mov     bl,al
+ 000D  B2 2B			        mov     dl,'+'		;显示加号
+ 000F  B4 02			        mov     ah,02h
+ 0011  CD 21			        int     21h
+ 0013  B4 01			        mov     ah,01h		;输入第二个数
+ 0015  CD 21			        int     21h
+ 0017  2C 30			        sub     al,30h
+ 0019  02 D8			        add     bl,al
+ 001B  88 1E 0000 R		        mov     ral,bl		;保存结果到ral单元
+ 001F  B2 3D			        mov     dl,'='		;显示“=”号
+ 0021  B4 02			        mov     ah,02h
+ 0023  CD 21			        int     21h
+ 0025  8A C3			        mov     al,bl       ;al=a+b
+ 0027  8A EB			        mov	    ch,bl       ;ch=a+b
+ 0029  B1 04			        mov	    cl,4
+ 002B  D2 E8			        shr	    al,cl       ;al/=16
+ 002D  8D 1E 0001 R		        lea	    bx,htab     ;bx=&htab
+ 0031  D7			        xlat                ;al=bx[al]
+ 0032  8A D0			        mov	    dl,al		;显示结果十位上的数
+ 0034  B4 02			        mov	    ah,02h
+ 0036  CD 21			        int	    21h
+ 0038  80 E5 0F			        and	    ch,0fh      ;ch%=16
+ 003B  8A C5			        mov	    al,ch       ;al=ch
+ 003D  D7			        xlat
+ 003E  8A D0			        mov	    dl,al
+ 0040  B4 02			        mov	    ah,02h
+ 0042  CD 21			        int	    21h
+ 0044  B2 68			        mov     dl,'h'		;显示字符“h”
+ 0046  B4 02			        mov     ah,02h
+ 0048  CD 21			        int     21h
+ 004A  B4 4C			        mov     ah,4ch
+ 004C  CD 21			        int     21h
+ 004E				cseg    ends
+				        end     start
+Microsoft (R) Macro Assembler Version 6.15.8803		    05/05/18 17:04:33
+EXAM3.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+cseg . . . . . . . . . . . . . .	16 Bit	 004E	  Para	  Private 
+dseg . . . . . . . . . . . . . .	16 Bit	 0011	  Para	  Private 
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+htab . . . . . . . . . . . . . .	Byte	 0001	  dseg	
+ral  . . . . . . . . . . . . . .	Byte	 0000	  dseg	
+start  . . . . . . . . . . . . .	L Near	 0000	  cseg	
+
+	   0 Warnings
+	   0 Errors

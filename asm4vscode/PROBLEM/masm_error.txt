@@ -1,0 +1,1 @@
+MASM : fatal error A1000: cannot open file : 1-1.asm
