@@ -1,5 +1,24 @@
 # 80x86汇编笔记
 
+## 寻址方式
+
+1. 直接寻址
+
+```assembly
+mov ax, [2000h] ;默认为DS段
+mov ax, es:[2000h]
+```
+
+2. 寄存器间接寻址
+
+```assembly
+mov ax, [si] ;默认为DS段
+```
+
+只能是BX, SI, DI；
+
+
+
 ## OFFSET
 
 ```assembly
