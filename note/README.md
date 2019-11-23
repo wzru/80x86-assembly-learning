@@ -1,5 +1,20 @@
 # 80x86汇编笔记
 
+## MOV
+
+```assembly
+mov reg, imm/reg/mem
+mov mem, reg/seg
+mov seg, reg/mem
+```
+
+- 不允许主存到主存的MOV
+
+- 不允许段寄存器之间的直接数据传送
+- 不允许段寄存器和立即数的MOV
+
+- CS和IP不允许MOV, 往往通过JMP来控制
+
 ## 寻址方式
 
 1. 直接寻址
@@ -15,9 +30,53 @@ mov ax, es:[2000h]
 mov ax, [si] ;默认为DS段
 ```
 
-只能是BX, SI, DI；
+只能是BX, SI, DI, BP；
 
+3. 基址变址寻址
 
+只有4种组合
+
+```assembly
+mov seg, [bx/bp + si/di]
+```
+
+bx默认段为ds, bp默认段为ss
+
+4. 寄存器相对寻址
+
+在2的基础上加上偏移的立即数
+
+5. 相对基址变址寻址
+
+在3的基础上加上偏移的立即数
+
+## 位宽
+
+有寄存器名时, 以寄存器名为准
+
+无寄存器名时, 用`X ptr`来指定长度, 其中X可以为`byte`和`word`
+
+例外: push只进行字操作
+
+## MUL
+
+```assembly
+mul reg/mem
+```
+
+如果是8位，与AL相乘，结果放在AX
+
+如果是16位，与AX相乘，结果放在DX AX
+
+## DIV
+
+```assembly
+div reg/mem
+```
+
+如果除数为8位，则被除数为AX，AL存储商，AX存储余数
+
+如果除数为16位，则被除数为DX AX，AX存储商，DX存储余数
 
 ## OFFSET
 
@@ -55,12 +114,6 @@ CMP MEM, IMM/REG
 
 cmp不能比较两个存储单元, 不能比较两个立即数
 
-## MOV
-
-不允许主存到主存的MOV
-
-不允许段寄存器之间的直接数据传送
-
 ## 条件转移与无条件转移
 
 条件转移只能段内转移, 即目标地址只能是在同一段内，且在当前IP地址-128~+127个单元的范围之内。这种寻址方式由于是相对于当前IP的，所以被称为相对寻址方式。
@@ -72,21 +125,37 @@ cmp不能比较两个存储单元, 不能比较两个立即数
 汇编语言基本数据类型汇总:
 
 DB:Define Byte,定义字节(8位/1字节)无符号整数;等同于BYTE;
-DW:Define Word,定义字(16位/2字节)无符号整数;等同于WORD;
+
+W:Define Word,定义字(16位/2字节)无符号整数;等同于WORD;
+
 DD:Define DoubleWord,定义双字(32位/4字节)无符号整数;等同于DWORD;
+
 DF:Defined Farword,定义三字(48位/6字节)无符号整数;等同于FWORD;
+
 DQ:Define QuadWord,定义四字(64位/8字节)无符号整数;等同于QWORD;
+
 DT:Define TenBytes,定义五字(80位/10字节)无符号整数;等同于TBYTE;
+
 BYTE  : 8位无符号整数
+
 WORD  : 16位无符号整数
+
 DWORD : 32位无符号整数
+
 QWORD : 64位整数
-TBYTE : 80位整数
+
+BYTE : 80位整数
+
 SBYTE : 8位有符号整数
+
 SWORD : 16位有符号整数
+
 SDWORD: 32位有符号整数
+
 FWORD : 48位整数(保护模式下作远指针)
+
 REAL4 : 32位IEEE短实数
+
 REAL8 : 64位IEEE长实数
 
 REAL10: 80位IEEE扩展精度实数
@@ -122,3 +191,5 @@ flat为[Windows程序](https://www.baidu.com/s?wd=Windows%E7%A8%8B%E5%BA%8F&tn=S
 stdcall为API调用时右边的参数先入栈
 
 option casemap:none ;指明大小写敏感  
+
+汇编源程序中立即数不能以字母开头, 否则要加0前缀
