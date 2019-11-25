@@ -1,55 +1,55 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "run_asm",
-            "type": "shell",
-            "command": "cd .. ; ./run_asm \\\"${file}\\\" 0",
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "debug_asm",
-            "type": "shell",
-            "command": "cd .. ; ./debug_asm \\\"${file}\\\" 0",
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "new_asm",
-            "type": "shell",
-            "command": "cd .. ; ./new_asm",
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "make_asm",
-            "type": "shell",
-            "command": "cd .. ; ./make_asm \\\"${file}\\\" 0",
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "list_asm",
-            "type": "shell",
-            "command": "cd .. ; ./list_asm \\\"${file}\\\" 0",
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "运行",
+      "type": "shell",
+      "command": "cd .. ; ./run_asm \\\"${file}\\\" 0",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "调试",
+      "type": "shell",
+      "command": "cd .. && ./debug_asm \\\"${file}\\\" 0",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "新建",
+      "type": "shell",
+      "command": "cd .. && ./new_asm",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "编译验证",
+      "type": "shell",
+      "command": "cd .. && ./make_asm \\\"${file}\\\" 0",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "预处理",
+      "type": "shell",
+      "command": "cd .. && ./list_asm \\\"${file}\\\" 0",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
 }

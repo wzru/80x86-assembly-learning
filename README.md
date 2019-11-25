@@ -8,7 +8,7 @@ This repository includes running tools, notes, lab report for people who are lea
 
 所有汇编程序基于MASM 6.15
 
-All assembly programs follows MASM 6.15
+All assembly programs follow MASM 6.15
 
 ## Folder
 
@@ -20,7 +20,7 @@ All assembly programs follows MASM 6.15
 
 `note`是个人笔记
 
-`slide`是教材作者的PPT
+`slide`是教材作者配套的PPT
 
 ## Tools
 

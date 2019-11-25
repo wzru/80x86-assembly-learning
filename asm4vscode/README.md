@@ -1,4 +1,14 @@
 # asm4vscode
+## 快速开始
+
+1. `VS Code`-`文件/File`-`打开工作区/Open workspace`-选择打开`asm4vscode/SRC/ASM.code-workspace`
+
+2. 在`SRC`文件夹下新建`.asm`文件，编写完汇编后按`ctrl+shift+B`，选择想要运行的任务
+
+## 如果你遇到了问题
+
+可以尝试根据报错信息自行更改VS Code中关于终端的设置，以及`SRC/.vscode/tasks.json`的配置
+
 ## How to run and debug 80x86 assembly programs on Windows 10 using VS Code
 
 First, all we do is ultimately running on virtual machine(DOSBOX). But we can simplify the operation using the `workspace` function of VS Code.

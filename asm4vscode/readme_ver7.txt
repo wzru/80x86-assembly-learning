@@ -69,7 +69,7 @@ var5:2018年5月5日02:02:07
  run_dosbox.bat		--用于打开dosbox的子程序
  set_path.bat		--用于设置环境变量的子程序
 
-var6:2018年5月5日16:38:48		!暂时确定这一版是最终版!
+var6:2018年5月5日16:38:48
 1.优化dosbox打开参数
 2.new_asm时不能以dubug作为文件名新建了.防止覆盖DEBUG.EXE
 3.新增了中断说明文件和ascii码对照表
@@ -109,6 +109,44 @@ var6:2018年5月5日16:38:48		!暂时确定这一版是最终版!
  NEW_ASM.BAT		--用于生成一个含有helloworld例程的asm文件
  readme_ver6.txt	--自述文件 作者:Karl 有什么bug请投PSR过程文件
 			--(自行百度)到 1632083718@qq.com
+ RUN_ASM.bat		--用于一键编译执行被拖入的源程序(拖入asm)
+ RUN_DOSBOX.bat		--用于打开dosbox的子程序
+ SET_PATH.bat		--用于设置环境变量的子程序
+
+var7:2019年9月30日22:47:17		!暂时确定这一版是最终版!
+1.准备Python脚本备选方案,如果要启用的话,请将disable.py重命名成enable.py
+2.优化文件结构
+文件结构将变为:
+ SRC			--汇编单文件
+ |- .vscode		--vscode文件夹的配置文件夹
+ |- list.lst		--list_asm所默认生成的列表文件
+ |- hw.asm		--hello world例程
+ DOSBOX			--放有dosbox及运行库,用以运行编译出来的可执行文件
+ |- DOSBox.exe		--DOSBox主程序
+ |- DosBoxConfig.conf	--DOSBox配置文件
+ |- SDL.dll		--DOSBox运行库
+ |- SDL_net.dll		--DOSBox运行库
+ EXE			--默认编译出来的程序存放的位置
+ |- DEBUG.EXE		--用于调试汇编程序的程序
+ |- hw.exe		--hello world可执行程序
+ |- run_exe.bat		--用于直接用dosbox打开拖入程序(拖入exe)
+ MASM			--放有编译用到的程序
+ |- LINK.EXE		--链接程序
+ |- MASM.EXE		--宏汇编程序
+ |- ML.ERR		--错误代码文件
+ |- ML.EXE		--被LINK.EXE所用的程序
+ PROBLEM		--从机房拷来的源程序...(别问我有什么用,我也不知道:)
+ |- .vscode		--vscode文件夹 的 配置文件夹
+ |- list.lst		--list_asm所默认生成的列表文件
+ |- EXAM**.ASM		--样例**程序
+ ASM.CODE-WORKSPACE	--vscode的工作区文件
+ DEBUG_ASM.BAT		--用于一键调试被拖入程序(拖入asm)
++disable.py		--新增的Python编译运行脚本
+ GET_FILENAME.BAT	--获得文件名的子程序
+ LIST_ASM.BAT		--用于一键生成被拖入源程序的列表文件(拖入asm)
+ MAKE_ASM.BAT		--用于一键编译被拖入的源程序(拖入asm)
+ NEW_ASM.BAT		--用于生成一个含有helloworld例程的asm文件
+ readme_ver7.txt	--自述文件 作者:Karl 可以mail我，1632083718@qq.com
  RUN_ASM.bat		--用于一键编译执行被拖入的源程序(拖入asm)
  RUN_DOSBOX.bat		--用于打开dosbox的子程序
  SET_PATH.bat		--用于设置环境变量的子程序
